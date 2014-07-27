@@ -4,9 +4,9 @@ using Data.Generic.Abstract;
 
 namespace Data.Generic.Concrete
 {
-    public class DatabaseFactory<T>
-        where T : Database, new()
+    public class DatabaseFactory<T> : IDatabaseFactory
+        where T : IDatabase, new()
     {
-        public Database GetDatabase() { return new T(); }
+        public IDatabase GetDatabase() { return new T(); }
     }
 }

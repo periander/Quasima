@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Data.SqlServer2012;
+
 
 namespace Data.Test
 {
@@ -14,7 +14,7 @@ namespace Data.Test
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run();
+            Application.Run(new Form1(new SqlServer2012.DatabaseFactory()));
         }
     }
 }

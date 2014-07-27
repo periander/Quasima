@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Data.Interface
 {
-    interface IDatabase
+    public interface IDatabase
     {
         bool IsConnected { get; }
         Task<bool> Connect(string connectionString = "");

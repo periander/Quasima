@@ -30,7 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Generic\Abstract\Database.cs" />
     <Compile Include="Generic\Abstract\FieldDefinition.cs" />
     <Compile Include="Generic\Concrete\DatabaseFactory.cs" />
     <Compile Include="Generic\Concrete\FieldDefinition.cs" />
@@ -43,6 +42,7 @@
     <Compile Include="Generic\Concrete\RowDefinition.cs" />
     <Compile Include="Generic\Concrete\TableDefinition.cs" />
     <Compile Include="Interface\IDatabase.cs" />
+    <Compile Include="Interface\IDatabaseFactory.cs" />
     <Compile Include="Interface\IFieldDefinition.cs" />
     <Compile Include="Interface\IFieldType.cs" />
     <Compile Include="Interface\IRowDefinition.cs" />
