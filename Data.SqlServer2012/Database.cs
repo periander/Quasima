@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Data.SqlServer2012
 {
-    public class Database : GenericImplementation.Abstract.Database
+    public class Database : IDatabase
     {
 
         SqlConnection _connection;
 
-        public override bool IsConnected
+        public bool IsConnected
         {
             get { return _connection != null && _connection.State == ConnectionState.Open; }
         }
 
-        public override async Task<bool> ConnectAsync(string connectionString = "")
+        public async Task<bool> ConnectAsync(string connectionString = "")
         {
             if(_connection == null || !IsConnected)
             {

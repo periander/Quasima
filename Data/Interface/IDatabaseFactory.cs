@@ -1,7 +1,7 @@
 ﻿
 namespace Data.Interface
 {
-    interface IDatabaseFactory
+    public interface IDatabaseFactory
     {
         IDatabase GetDatabase();
     }

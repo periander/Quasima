@@ -2,7 +2,7 @@
 
 namespace Data.Interface
 {
-    interface IFieldType
+    public interface IFieldType
     {
         string LogicalTypeName { get; }
         string DatabaseTypeName { get; }

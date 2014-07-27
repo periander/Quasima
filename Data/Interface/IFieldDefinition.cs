@@ -1,6 +1,6 @@
 ﻿namespace Data.Interface
 {
-    interface IFieldDefinition
+    public interface IFieldDefinition
     {
         string Name { get; }
         IFieldType Type { get; }
