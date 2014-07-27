@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.SqlServer2012.UnitTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Test", "Data.Test.csproj", "{8B835305-0A00-455A-B408-9490D8954C2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.UnitTest", "..\Data.UnitTest\Data.UnitTest.csproj", "{51A1F622-0478-4D63-952F-9551B8EC87F9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{8B835305-0A00-455A-B408-9490D8954C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B835305-0A00-455A-B408-9490D8954C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B835305-0A00-455A-B408-9490D8954C2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51A1F622-0478-4D63-952F-9551B8EC87F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51A1F622-0478-4D63-952F-9551B8EC87F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51A1F622-0478-4D63-952F-9551B8EC87F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51A1F622-0478-4D63-952F-9551B8EC87F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

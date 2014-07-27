@@ -21,8 +21,7 @@ namespace Data.Generic.Abstract
             Position = position;
         }
 
-        private string _name = string.Empty;
-        public string Name { get { return _name; } set { _name = string.IsNullOrEmpty(value) ? string.Empty : value; } }
+        public string Name { get; private set; }
         public IFieldType Type { get; private set; }
         public bool Nullable { get; private set; }
         public int MaxLength { get; private set; }

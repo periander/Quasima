@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using Data.Interface;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -20,24 +21,28 @@ namespace Data.SqlServer2012
             get { return _connection != null && _connection.State == ConnectionState.Open; }
         }
 
-        public async Task<bool> Connect(string connectionString = "")
+        public async Task<bool> Connect(CancellationToken ct, string connectionString = "")
         {
             if(_connection == null || !IsConnected)
             {
                 _connection = string.IsNullOrEmpty(connectionString) ? new SqlConnection() : new SqlConnection(connectionString);
-                await _connection.OpenAsync();
+                await _connection.OpenAsync(ct);
             }
             return IsConnected;
         }
 
 
 #pragma warning disable 1998
-        public async Task<bool> Disconnect()
+        public async Task<bool> Disconnect(CancellationToken ct)
 #pragma warning restore 1998
         {
             if(_connection != null && IsConnected)
             {
                 _connection.Close();
+            }
+            if(ct.IsCancellationRequested)
+            {
+                throw new TaskCanceledException();
             }
             return !IsConnected;
         }
@@ -52,7 +57,7 @@ namespace Data.SqlServer2012
         private const int FieldMaxCharLengthIndex = 8;
 
 #pragma warning disable 1998
-        public async Task<IList<ITableDefinition>> GetTables()
+        public async Task<IList<ITableDefinition>> GetTables(CancellationToken ct)
 #pragma warning restore 1998
         {
             if (!_tables.Any())
@@ -60,6 +65,10 @@ namespace Data.SqlServer2012
                 var tables = _connection.GetSchema("Tables");
                 foreach(DataRow tableSchemaRow in tables.Rows)
                 {
+                    if (ct.IsCancellationRequested)
+                    {
+                        throw new TaskCanceledException();
+                    }
                     var tableName = tableSchemaRow[TableNameIndex] as string;
                     var restrictions = new string[TableNameIndex + 1];
                     restrictions[TableNameIndex] = tableName;
@@ -69,6 +78,10 @@ namespace Data.SqlServer2012
                     var tableSchema = _connection.GetSchema("Columns", restrictions);
                     foreach(DataRow fieldSchemaRow in tableSchema.Rows)
                     {
+                        if (ct.IsCancellationRequested)
+                        {
+                            throw new TaskCanceledException();
+                        }
                         var fieldName = fieldSchemaRow[FieldNameIndex] as string;
                         var fieldPos = (fieldSchemaRow[FieldPosIndex] as int?).GetValueOrDefault();
                         var fieldDefaultVal = fieldSchemaRow[FieldDefaultValIndex];
@@ -90,7 +103,10 @@ namespace Data.SqlServer2012
                     _tables.Add(table);
                 }
             }
-
+            if (ct.IsCancellationRequested)
+            {
+                throw new TaskCanceledException();
+            }
             return _tables;
         }
 
