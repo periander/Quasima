@@ -2,8 +2,8 @@
 
 namespace Data.Generic.Concrete.FieldTypes
 {
-    class DoubleField : FieldType<double>
+    public class DoubleField : FieldType<double>
     {
-        public override string DatabaseTypeName { get { return "FLOAT"; } }
+        public override string DatabaseTypeName { get { return "DOUBLE"; } }
     }
 }

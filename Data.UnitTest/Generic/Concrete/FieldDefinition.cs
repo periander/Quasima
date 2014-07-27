@@ -11,7 +11,7 @@ namespace Data.Test.Generic.Concrete
             [TestMethod]
             public void CannotBeNull()
             {
-                var fd = new Data.Generic.Concrete.FieldDefinition(null, new Data.Generic.Concrete.FieldTypes.StringField());
+                var fd = new Data.Generic.Concrete.FieldDefinition(null, new Data.Generic.Concrete.FieldTypes.StringField(), false, 50, 0);
                 Assert.IsNotNull(fd.Name);
             }
         }

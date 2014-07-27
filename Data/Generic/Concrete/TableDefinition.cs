@@ -4,11 +4,16 @@ using System.Collections.Generic;
 
 namespace Data.Generic.Concrete
 {
-    class TableDefinition : ITableDefinition
+    public class TableDefinition : ITableDefinition
     {
-        public string Name { get; set; }
+        public TableDefinition(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; private set; }
 
         private readonly RowDefinition _rowDefinition = new RowDefinition();
-        public IRowDefinition RowDefinitions { get { return _rowDefinition; } }
+        public IRowDefinition RowDefinition { get { return _rowDefinition; } }
     }
 }

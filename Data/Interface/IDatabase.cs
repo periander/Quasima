@@ -10,5 +10,7 @@ namespace Data.Interface
         Task<bool> Disconnect();
         
         Task<IList<ITableDefinition>> GetTables();
+
+        IList<IFieldType> ValidFieldTypes { get; } 
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Data.Generic.Concrete.FieldTypes
 {
-    class StringField : FieldType<string>
+    public class StringField : FieldType<string>
     {
         public override string DatabaseTypeName { get { return "VARCHAR"; } }
     }

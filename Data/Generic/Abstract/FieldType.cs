@@ -5,7 +5,7 @@ using Data.Interface;
 
 namespace Data.Generic.Abstract
 {
-    abstract class FieldType<T> : IFieldType
+    public abstract class FieldType<T> : IFieldType
     {
         public string LogicalTypeName { get { return LogicalTypeType.ToString(); } }
         public abstract string DatabaseTypeName { get; }

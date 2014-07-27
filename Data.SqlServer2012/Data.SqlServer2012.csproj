@@ -32,6 +32,10 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="DatabaseFactory.cs" />
+    <Compile Include="FieldTypes\BooleanField.cs" />
+    <Compile Include="FieldTypes\DateTimeField.cs" />
+    <Compile Include="FieldTypes\DoubleField.cs" />
+    <Compile Include="FieldTypes\GuidField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,6 @@ namespace Data.Interface
     public interface ITableDefinition
     {
         string Name { get; }
-        IRowDefinition RowDefinitions { get; }
+        IRowDefinition RowDefinition { get; }
     }
 }
