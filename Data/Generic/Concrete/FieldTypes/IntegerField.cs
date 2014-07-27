@@ -1,6 +1,6 @@
-﻿using Data.GenericImplementation.Abstract;
+﻿using Data.Generic.Abstract;
 
-namespace Data.GenericImplementation.Concrete.FieldTypes
+namespace Data.Generic.Concrete.FieldTypes
 {
     class IntegerField : FieldType<int>
     {

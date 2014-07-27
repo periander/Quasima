@@ -1,5 +1,4 @@
-﻿using Data.GenericImplementation.Concrete;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Data.Test.Generic.Concrete
 {
@@ -12,7 +11,7 @@ namespace Data.Test.Generic.Concrete
             [TestMethod]
             public void CannotBeNull()
             {
-                var fd = new ConcreteFieldDefinition(null, new Data.GenericImplementation.Concrete.FieldTypes.StringField());
+                var fd = new Data.Generic.Concrete.FieldDefinition(null, new Data.Generic.Concrete.FieldTypes.StringField());
                 Assert.IsNotNull(fd.Name);
             }
         }

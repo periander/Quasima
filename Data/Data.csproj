@@ -30,19 +30,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GenericImplementation\Abstract\FieldDefinition.cs" />
-    <Compile Include="GenericImplementation\Concrete\DatabaseFactory.cs" />
-    <Compile Include="GenericImplementation\Concrete\FieldDefinition.cs" />
-    <Compile Include="GenericImplementation\Abstract\FieldType.cs" />
-    <Compile Include="GenericImplementation\Concrete\FieldTypes\DateTimeField.cs" />
-    <Compile Include="GenericImplementation\Concrete\FieldTypes\DoubleField.cs" />
-    <Compile Include="GenericImplementation\Concrete\FieldTypes\GuidField.cs" />
-    <Compile Include="GenericImplementation\Concrete\FieldTypes\IntegerField.cs" />
-    <Compile Include="GenericImplementation\Concrete\FieldTypes\StringField.cs" />
+    <Compile Include="Generic\Abstract\Database.cs" />
+    <Compile Include="Generic\Abstract\FieldDefinition.cs" />
+    <Compile Include="Generic\Concrete\DatabaseFactory.cs" />
+    <Compile Include="Generic\Concrete\FieldDefinition.cs" />
+    <Compile Include="Generic\Abstract\FieldType.cs" />
+    <Compile Include="Generic\Concrete\FieldTypes\DateTimeField.cs" />
+    <Compile Include="Generic\Concrete\FieldTypes\DoubleField.cs" />
+    <Compile Include="Generic\Concrete\FieldTypes\GuidField.cs" />
+    <Compile Include="Generic\Concrete\FieldTypes\IntegerField.cs" />
+    <Compile Include="Generic\Concrete\FieldTypes\StringField.cs" />
+    <Compile Include="Generic\Concrete\RowDefinition.cs" />
+    <Compile Include="Generic\Concrete\TableDefinition.cs" />
     <Compile Include="Interface\IDatabase.cs" />
-    <Compile Include="Interface\IDatabaseFactory.cs" />
     <Compile Include="Interface\IFieldDefinition.cs" />
     <Compile Include="Interface\IFieldType.cs" />
+    <Compile Include="Interface\IRowDefinition.cs" />
+    <Compile Include="Interface\ITableDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
