@@ -71,10 +71,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data.SqlServer2012\Data.SqlServer2012.csproj">
-      <Project>{52c55388-578f-4c7a-ac1b-4425c3197c50}</Project>
-      <Name>Data.SqlServer2012</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{C0B0066F-7FFE-4BC7-B47F-AA205FD73111}</Project>
       <Name>Data</Name>

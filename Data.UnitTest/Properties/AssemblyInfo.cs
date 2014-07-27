@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Data.Test")]
+[assembly: AssemblyTitle("Data.SqlServer2012.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Data.Test")]
+[assembly: AssemblyProduct("Data.SqlServer2012.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("17330d35-bd11-45c2-a5cc-e0c058332f6b")]
+[assembly: Guid("583034a3-29ee-442c-ac56-8444b37cccd3")]
 
 // Version information for an assembly consists of the following four values:
 //

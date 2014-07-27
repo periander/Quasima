@@ -2,6 +2,6 @@
 {
     public interface IDatabaseFactory
     {
-        IDatabase GetDatabase();
+        IDatabase CreateDatabase();
     }
 }

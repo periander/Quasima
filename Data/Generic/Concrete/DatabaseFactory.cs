@@ -1,12 +1,11 @@
-﻿using System;
-using Data.Interface;
-using Data.Generic.Abstract;
+﻿using Data.Interface;
 
 namespace Data.Generic.Concrete
 {
     public class DatabaseFactory<T> : IDatabaseFactory
         where T : IDatabase, new()
     {
-        public IDatabase GetDatabase() { return new T(); }
+        public IDatabase CreateDatabase() { return new T(); }
+
     }
 }

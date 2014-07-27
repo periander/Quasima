@@ -73,7 +73,7 @@ namespace Data.SqlServer2012
                     var restrictions = new string[TableNameIndex + 1];
                     restrictions[TableNameIndex] = tableName;
 
-                    var table = new Generic.Concrete.TableDefinition(tableName);
+                    var table = new TableDefinition(tableName);
 
                     var tableSchema = _connection.GetSchema("Columns", restrictions);
                     foreach(DataRow fieldSchemaRow in tableSchema.Rows)
