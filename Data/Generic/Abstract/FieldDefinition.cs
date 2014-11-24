@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using Data.Generic.Concrete;
-using Data.Interface;
+﻿using Data.Interface;
 
 namespace Data.Generic.Abstract
 {

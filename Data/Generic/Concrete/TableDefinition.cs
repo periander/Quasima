@@ -1,6 +1,4 @@
-﻿
-using Data.Interface;
-using System.Collections.Generic;
+﻿using Data.Interface;
 
 namespace Data.Generic.Concrete
 {

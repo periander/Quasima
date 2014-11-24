@@ -1,5 +1,4 @@
-﻿using Data.Generic.Abstract;
-using Data.Interface;
+﻿using Data.Interface;
 
 namespace Data.Generic.Concrete
 {

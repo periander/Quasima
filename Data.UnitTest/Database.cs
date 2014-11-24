@@ -10,21 +10,21 @@ namespace Data.UnitTest
     [TestClass]
     public abstract class Database
     {
-        private readonly IDatabaseFactory databaseFactory;
-        private IDatabase database { get; set; }
-        private readonly string connectionString;
-        private CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+        private readonly IDatabaseFactory _databaseFactory;
+        private IDatabase _database { get; set; }
+        private readonly string _connectionString;
+        private CancellationTokenSource _cancelTokenSource = new CancellationTokenSource();
         protected Database(IDatabaseFactory factory, string validConnectionString)
         {
-            databaseFactory = factory;
-            connectionString = validConnectionString;
+            _databaseFactory = factory;
+            _connectionString = validConnectionString;
         }
 
         [TestInitialize]
         public void TestInitialize()
         {
-            cancelTokenSource = new CancellationTokenSource();
-            database = databaseFactory.CreateDatabase();
+            _cancelTokenSource = new CancellationTokenSource();
+            _database = _databaseFactory.CreateDatabase();
         }
 
 
@@ -33,36 +33,36 @@ namespace Data.UnitTest
         [TestMethod]
         public void ConnectAsync_CanConnect()
         {
-            Assert.IsTrue(database.Connect(cancelTokenSource.Token, connectionString).Result);
+            Assert.IsTrue(_database.Connect(_cancelTokenSource.Token, _connectionString).Result);
         }
 
         [TestMethod]
         [ExpectedException(typeof(AggregateException))]
         public void ConnectAsync_InvalidConnStringFails()
         {
-            Assert.IsFalse(!database.Connect(cancelTokenSource.Token, "some invalid string").Result);
+            Assert.IsFalse(!_database.Connect(_cancelTokenSource.Token, "some invalid string").Result);
         }
 
         [TestMethod]
         [ExpectedException(typeof(AggregateException))]
         public void ConnectAsync_EmptyConnStringFails()
         {
-            Assert.IsFalse(!database.Connect(cancelTokenSource.Token, string.Empty).Result);
+            Assert.IsFalse(!_database.Connect(_cancelTokenSource.Token, string.Empty).Result);
         }
 
         [TestMethod]
         [ExpectedException(typeof(AggregateException))]
         public void ConnectAsync_EmptyConnStringFails2()
         {
-            Assert.IsFalse(!database.Connect(cancelTokenSource.Token).Result);
+            Assert.IsFalse(!_database.Connect(_cancelTokenSource.Token).Result);
         }
 
         [TestMethod]
         [ExpectedException(typeof(AggregateException))]
         public void ConnectAsync_CanCancel()
         {
-            var t = Task.Factory.StartNew(() => database.Connect(cancelTokenSource.Token, connectionString), cancelTokenSource.Token);
-            cancelTokenSource.Cancel();
+            var t = Task.Factory.StartNew(() => _database.Connect(_cancelTokenSource.Token, _connectionString), _cancelTokenSource.Token);
+            _cancelTokenSource.Cancel();
             //t.Wait();
             Assert.IsFalse(t.Result.Result);
         }
@@ -75,9 +75,9 @@ namespace Data.UnitTest
         [TestMethod]
         public void DisconnectAsync_CanDisconnect()
         {
-            if (database.Connect(cancelTokenSource.Token, connectionString).Result)
+            if (_database.Connect(_cancelTokenSource.Token, _connectionString).Result)
             {
-                Assert.IsTrue(database.Disconnect(cancelTokenSource.Token).Result);
+                Assert.IsTrue(_database.Disconnect(_cancelTokenSource.Token).Result);
             }
             else
             {
@@ -89,8 +89,8 @@ namespace Data.UnitTest
         [ExpectedException(typeof(AggregateException))]
         public void DisconnectAsync_CanCancel()
         {
-            var t = Task.Factory.StartNew(() => database.Disconnect(cancelTokenSource.Token), cancelTokenSource.Token);
-            cancelTokenSource.Cancel();
+            var t = Task.Factory.StartNew(() => _database.Disconnect(_cancelTokenSource.Token), _cancelTokenSource.Token);
+            _cancelTokenSource.Cancel();
             //t.Wait();
             Assert.IsFalse(t.Result.Result);
         }
@@ -102,9 +102,9 @@ namespace Data.UnitTest
         [TestMethod]
         public void GetTables_CanGetTables()
         {
-            if (database.Connect(cancelTokenSource.Token, connectionString).Result)
+            if (_database.Connect(_cancelTokenSource.Token, _connectionString).Result)
             {
-                Assert.IsTrue(database.GetTables(cancelTokenSource.Token).Result.Any());
+                Assert.IsTrue(_database.GetTables(_cancelTokenSource.Token).Result.Any());
 
 
             }

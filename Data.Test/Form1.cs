@@ -9,12 +9,12 @@ namespace Data.Test
 {
     public partial class Form1 : Form
     {
-        private IDatabaseFactory DbFactory { get; set; }
-        private CancellationTokenSource cts = new CancellationTokenSource();
+        private IDatabaseFactory _databaseFactory { get; set; }
+        private readonly CancellationTokenSource _cts = new CancellationTokenSource();
 
         public Form1(IDatabaseFactory dbFactory)
         {
-            DbFactory = dbFactory;
+            _databaseFactory = dbFactory;
             InitializeComponent();
         }
 
@@ -22,11 +22,11 @@ namespace Data.Test
         {
             var database = new Database();
 
-            var connected = await database.Connect(cts.Token, textBoxConnectionString.Text);
+            var connected = await database.Connect(_cts.Token, textBoxConnectionString.Text);
 
             if (connected)
             {
-                var tables = await database.GetTables(cts.Token);
+                var tables = await database.GetTables(_cts.Token);
             }
 
         }

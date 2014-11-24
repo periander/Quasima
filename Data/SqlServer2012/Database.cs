@@ -51,14 +51,12 @@ namespace Data.SqlServer2012
         private const int TableNameIndex = 2;
         private const int FieldNameIndex = 3;
         private const int FieldPosIndex = 4;
-        private const int FieldDefaultValIndex = 5;
+        //private const int FieldDefaultValIndex = 5;
         private const int FieldIsNullableIndex = 6;
         private const int FieldDataTypeIndex = 7;
         private const int FieldMaxCharLengthIndex = 8;
 
-#pragma warning disable 1998
-        public async Task<IList<ITableDefinition>> GetTables(CancellationToken ct)
-#pragma warning restore 1998
+        public Task<IList<ITableDefinition>> GetTables(CancellationToken ct)
         {
             if (!_tables.Any())
             {
@@ -84,19 +82,19 @@ namespace Data.SqlServer2012
                         }
                         var fieldName = fieldSchemaRow[FieldNameIndex] as string;
                         var fieldPos = (fieldSchemaRow[FieldPosIndex] as int?).GetValueOrDefault();
-                        var fieldDefaultVal = fieldSchemaRow[FieldDefaultValIndex];
+                        //var fieldDefaultVal = fieldSchemaRow[FieldDefaultValIndex];
                         var fieldIsNullable = (fieldSchemaRow[FieldIsNullableIndex] as string) == "YES";
                         var fieldDataTypeStr = fieldSchemaRow[FieldDataTypeIndex] as string;
                         var fieldMaxCharLength = (fieldSchemaRow[FieldMaxCharLengthIndex] as int?).GetValueOrDefault();
                         IFieldType fieldDataType = ValidFieldTypes.FirstOrDefault(fT => String.Equals(fT.DatabaseTypeName, fieldDataTypeStr, StringComparison.OrdinalIgnoreCase));
 
-                        if(fieldDataType == null)
+                        if(fieldDataType != null)
                         {
-                            throw new Exception("Field type not supported.");
+                            table.RowDefinition.Fields.Add(new FieldDefinition(fieldName, fieldDataType, fieldIsNullable, fieldMaxCharLength, fieldPos));
                         }
                         else
                         {
-                            table.RowDefinition.Fields.Add(new FieldDefinition(fieldName, fieldDataType, fieldIsNullable, fieldMaxCharLength, fieldPos));
+                            throw new Exception("Field type not supported.");
                         }
                     }
 
@@ -107,7 +105,7 @@ namespace Data.SqlServer2012
             {
                 throw new TaskCanceledException();
             }
-            return _tables;
+            return Task.FromResult(_tables);
         }
 
         private readonly IList<IFieldType> _validFieldTypes = new IFieldType[]

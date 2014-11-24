@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using System.Security;
 using Data.Interface;
 
 namespace Data.Generic.Abstract
