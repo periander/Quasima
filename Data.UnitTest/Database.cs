@@ -116,5 +116,43 @@ namespace Data.UnitTest
 
         #endregion
 
+        #region GetTable
+
+        [TestMethod]
+        public void GetTable_ValidTableName()
+        {
+            if (_database.Connect(_cancelTokenSource.Token, _connectionString).Result)
+            {
+                Assert.IsTrue(_database.GetTable(_cancelTokenSource.Token, "PATIENT").Result != null);
+
+
+            }
+            else
+            {
+                throw new AssertFailedException("Database did not connect (this is unexpected if the CanConnect test passed).");
+            }
+            
+        }
+
+
+
+        [TestMethod]
+        public void GetTable_InvalidTableName()
+        {
+            if (_database.Connect(_cancelTokenSource.Token, _connectionString).Result)
+            {
+                Assert.IsTrue(_database.GetTable(_cancelTokenSource.Token, "FAKE_TABLE_NAME").Result == null);
+
+
+            }
+            else
+            {
+                throw new AssertFailedException("Database did not connect (this is unexpected if the CanConnect test passed).");
+            }
+
+        }
+
+        #endregion
+
     }
 }
