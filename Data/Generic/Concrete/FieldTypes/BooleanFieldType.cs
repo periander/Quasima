@@ -2,7 +2,7 @@
 
 namespace Data.Generic.Concrete.FieldTypes
 {
-    public class BooleanField : FieldType<bool>
+    public class BooleanFieldType : FieldType<bool>
     {
         public override string DatabaseTypeName { get { return "BOOL"; } }
     }

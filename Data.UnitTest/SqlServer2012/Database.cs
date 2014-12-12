@@ -3,7 +3,7 @@
 namespace Data.UnitTest.SqlServer2012
 {
     [TestClass]
-    public class Database : UnitTest.Database
+    public class Database : Interface.IDatabase
     {
         public Database()
             : base(factory: new Data.SqlServer2012.DatabaseFactory(),

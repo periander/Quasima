@@ -56,7 +56,7 @@ namespace Data.SqlServer2012
         private const int FieldDataTypeIndex = 7;
         private const int FieldMaxCharLengthIndex = 8;
 
-        public Task<IList<ITableDefinition>> GetTables(CancellationToken ct)
+        public async Task<IList<ITableDefinition>> GetTables(CancellationToken ct)
         {
             if (!_tables.Any())
             {
@@ -105,18 +105,37 @@ namespace Data.SqlServer2012
             {
                 throw new TaskCanceledException();
             }
-            return Task.FromResult(_tables);
+            return _tables;
         }
 
         private readonly IList<IFieldType> _validFieldTypes = new IFieldType[]
         {
-            new Generic.Concrete.FieldTypes.IntegerField(), 
-            new Generic.Concrete.FieldTypes.StringField(), 
+            new Generic.Concrete.FieldTypes.IntegerFieldType(), 
+            new Generic.Concrete.FieldTypes.StringFieldType(), 
             new GuidField(), 
             new DoubleField(), 
             new DateTimeField(),
             new BooleanField()
         };
         public IList<IFieldType> ValidFieldTypes { get { return _validFieldTypes; } }
+
+
+        public async Task<ITableDefinition> GetTable(CancellationToken ct, string tableName)
+        {
+            ITableDefinition ret = null;
+
+            var tables = await this.GetTables(ct);
+
+            foreach(var table in tables)
+            {
+                if(string.Equals(table.Name, tableName, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    ret = table;
+                }
+                
+            }
+
+            return ret;
+        }
     }
 }

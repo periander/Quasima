@@ -11,7 +11,9 @@ namespace Data.Interface
         Task<bool> Disconnect(CancellationToken ct);
 
         Task<IList<ITableDefinition>> GetTables(CancellationToken ct);
+        Task<ITableDefinition> GetTable(CancellationToken ct, string tableName);
 
-        IList<IFieldType> ValidFieldTypes { get; } 
+        IList<IFieldType> ValidFieldTypes { get; }
+
     }
 }

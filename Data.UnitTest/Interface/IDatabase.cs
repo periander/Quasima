@@ -5,16 +5,19 @@ using System.Threading.Tasks;
 using Data.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Data.UnitTest
+namespace Data.UnitTest.Interface
 {
+    /// <summary>
+    /// This is actually abstract but is analoguous to Data.Interface.IDatabase.
+    /// </summary>
     [TestClass]
-    public abstract class Database
+    public abstract class IDatabase
     {
         private readonly IDatabaseFactory _databaseFactory;
-        private IDatabase _database { get; set; }
+        private Data.Interface.IDatabase _database { get; set; }
         private readonly string _connectionString;
         private CancellationTokenSource _cancelTokenSource = new CancellationTokenSource();
-        protected Database(IDatabaseFactory factory, string validConnectionString)
+        protected IDatabase(IDatabaseFactory factory, string validConnectionString)
         {
             _databaseFactory = factory;
             _connectionString = validConnectionString;
@@ -123,7 +126,7 @@ namespace Data.UnitTest
         {
             if (_database.Connect(_cancelTokenSource.Token, _connectionString).Result)
             {
-                Assert.IsTrue(_database.GetTable(_cancelTokenSource.Token, "PATIENT").Result != null);
+                Assert.IsTrue(_database.GetTable(_cancelTokenSource.Token, "Patient").Result != null);
 
 
             }

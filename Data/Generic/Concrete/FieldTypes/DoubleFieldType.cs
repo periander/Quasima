@@ -2,7 +2,7 @@
 
 namespace Data.Generic.Concrete.FieldTypes
 {
-    public class DoubleField : FieldType<double>
+    public class DoubleFieldType : FieldType<double>
     {
         public override string DatabaseTypeName { get { return "DOUBLE"; } }
     }
