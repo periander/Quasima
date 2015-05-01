@@ -107,7 +107,7 @@ namespace Data.UnitTest.Interface
         {
             if (_database.Connect(_cancelTokenSource.Token, _connectionString).Result)
             {
-                Assert.IsTrue(_database.GetTables(_cancelTokenSource.Token).Result.Any());
+                Assert.IsTrue(_database.GetTableDefinitions(_cancelTokenSource.Token).Result.Any());
 
 
             }
@@ -126,7 +126,7 @@ namespace Data.UnitTest.Interface
         {
             if (_database.Connect(_cancelTokenSource.Token, _connectionString).Result)
             {
-                Assert.IsTrue(_database.GetTable(_cancelTokenSource.Token, "Patient").Result != null);
+                Assert.IsTrue(_database.GetTableDefinition(_cancelTokenSource.Token, "Patient").Result != null);
 
 
             }
@@ -144,7 +144,7 @@ namespace Data.UnitTest.Interface
         {
             if (_database.Connect(_cancelTokenSource.Token, _connectionString).Result)
             {
-                Assert.IsTrue(_database.GetTable(_cancelTokenSource.Token, "FAKE_TABLE_NAME").Result == null);
+                Assert.IsTrue(_database.GetTableDefinition(_cancelTokenSource.Token, "FAKE_TABLE_NAME").Result == null);
 
 
             }

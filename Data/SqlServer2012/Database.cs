@@ -47,7 +47,7 @@ namespace Data.SqlServer2012
             return !IsConnected;
         }
 
-        private readonly IList<ITableDefinition> _tables = new List<ITableDefinition>();
+        private readonly IList<ITableDefinition> _tableDefinitions = new List<ITableDefinition>();
         private const int TableNameIndex = 2;
         private const int FieldNameIndex = 3;
         private const int FieldPosIndex = 4;
@@ -56,9 +56,9 @@ namespace Data.SqlServer2012
         private const int FieldDataTypeIndex = 7;
         private const int FieldMaxCharLengthIndex = 8;
 
-        public async Task<IList<ITableDefinition>> GetTables(CancellationToken ct)
+        public Task<IList<ITableDefinition>> GetTableDefinitions(CancellationToken ct)
         {
-            if (!_tables.Any())
+            if (!_tableDefinitions.Any())
             {
                 var tables = _connection.GetSchema("Tables");
                 foreach(DataRow tableSchemaRow in tables.Rows)
@@ -98,14 +98,16 @@ namespace Data.SqlServer2012
                         }
                     }
 
-                    _tables.Add(table);
+                    _tableDefinitions.Add(table);
                 }
             }
             if (ct.IsCancellationRequested)
             {
                 throw new TaskCanceledException();
             }
-            return _tables;
+            var task = new TaskCompletionSource<IList<ITableDefinition>>();
+            task.SetResult(_tableDefinitions);
+            return task.Task;
         }
 
         private readonly IList<IFieldType> _validFieldTypes = new IFieldType[]
@@ -120,11 +122,11 @@ namespace Data.SqlServer2012
         public IList<IFieldType> ValidFieldTypes { get { return _validFieldTypes; } }
 
 
-        public async Task<ITableDefinition> GetTable(CancellationToken ct, string tableName)
+        public async Task<ITableDefinition> GetTableDefinition(CancellationToken ct, string tableName)
         {
             ITableDefinition ret = null;
 
-            var tables = await this.GetTables(ct);
+            var tables = await this.GetTableDefinitions(ct);
 
             foreach(var table in tables)
             {

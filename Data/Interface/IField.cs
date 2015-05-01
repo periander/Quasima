@@ -1,7 +1,7 @@
 ﻿
 namespace Data.Interface
 {
-    interface IField
+    public interface IField
     {
         object Value { get; set; }
         IFieldDefinition FieldDefinition { get; }

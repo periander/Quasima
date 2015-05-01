@@ -10,8 +10,8 @@ namespace Data.Interface
         Task<bool> Connect(CancellationToken ct, string connectionString = "");
         Task<bool> Disconnect(CancellationToken ct);
 
-        Task<IList<ITableDefinition>> GetTables(CancellationToken ct);
-        Task<ITableDefinition> GetTable(CancellationToken ct, string tableName);
+        Task<IList<ITableDefinition>> GetTableDefinitions(CancellationToken ct);
+        Task<ITableDefinition> GetTableDefinition(CancellationToken ct, string tableName);
 
         IList<IFieldType> ValidFieldTypes { get; }
 

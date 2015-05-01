@@ -15,9 +15,7 @@ namespace Data.Test
         [STAThread]
         static void Main()
         {
-
-            Field f = new Field(new FieldDefinition("a", new StringFieldType(), false, 10, 0));
-            
+           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1(new SqlServer2012.DatabaseFactory()));

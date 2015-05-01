@@ -2,7 +2,7 @@
 
 namespace Data.Interface
 {
-    interface IRow
+    public interface IRow : IEnumerable<IField>
     {
         IList<IField> Fields { get; }
         IRowDefinition RowDefinition { get; }

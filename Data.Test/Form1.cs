@@ -7,6 +7,8 @@ using Data.SqlServer2012;
 
 namespace Data.Test
 {
+    using Data.Generic.Concrete;
+
     public partial class Form1 : Form
     {
         private IDatabaseFactory _databaseFactory { get; set; }
@@ -26,7 +28,9 @@ namespace Data.Test
 
             if (connected)
             {
-                var tables = await database.GetTables(_cts.Token);
+                var tables = await database.GetTableDefinitions(_cts.Token);
+
+                object row = Activator.CreateInstance(typeof(Row));
 
             }
 
